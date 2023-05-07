@@ -1,15 +1,27 @@
-import React from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { NotFound } from "./3D/NotFound";
-import { Home } from "./Home";
-import { NavBar } from "./NavBar";
-import { Theme, ThemeProvider, useThemeContext } from "./ThemeContext";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { NotFound } from "./Components/3D/NotFound";
+import { Home } from "./Components/Home";
+import { NavBar } from "./Components/NavBar";
+import { Theme, useThemeContext } from "./ThemeContext";
+import { Loading } from "./Components/Loading";
 import "./index.css";
 
 const App = (): JSX.Element => {
+  const { themeIsLoading } = useThemeContext();
+  const [loading, setLoading] = React.useState<boolean>(true);
+
+  useEffect(() => {
+    //TODO: Add All Preloads Here
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   return (
-    <ThemeProvider>
+    <>
+      {(loading || themeIsLoading) && <Loading />}
       <Router>
         <PageContainer>
           <NavBar />
@@ -19,7 +31,7 @@ const App = (): JSX.Element => {
           </Routes>
         </PageContainer>
       </Router>
-    </ThemeProvider>
+    </>
   );
 };
 
@@ -31,11 +43,10 @@ const PageContainer = ({ children }: any) => {
 
 const StyledPageContainer = styled("div")(({ theme }: { theme: Theme }) => ({
   ...theme,
-  "*": {
+  backgroundColor: "transparent",
+  "h1,h2,h3,h4,h5,h6,p,a": {
     color: `${theme.color}`,
   },
-  height: "100vh",
-  "background-color": "#282c34",
 }));
 
 export default App;

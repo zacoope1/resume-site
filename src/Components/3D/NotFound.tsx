@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF, Center, Text, useAnimations } from "@react-three/drei";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   DegreesToRadians,
   GenerateRandomColor,
@@ -9,16 +9,13 @@ import {
 } from "./Utilities";
 import { useNavigate } from "react-router-dom";
 import * as Three from "three";
-import { Loading } from "./Loading";
 
 export const NotFound = (): JSX.Element => {
   return (
     <Canvas shadows="variance">
-      <Suspense fallback={<Loading />}>
-        <color attach="background" args={["#282c34"]} />
-        <ambientLight intensity={0.5} />
-        <NotFoundAnimation />
-      </Suspense>
+      <color attach="background" args={["#282c34"]} />
+      <ambientLight intensity={0.5} />
+      <NotFoundAnimation />
     </Canvas>
   );
 };
@@ -68,7 +65,7 @@ export const NotFoundAnimation = (): JSX.Element => {
         </group>
       </Center>
       <Druid position={[-2, -2, 0]} rotation={[0, DegreesToRadians(25), 0]} />
-      <House className="Hoverable" position={[2, -2, 0]} />
+      <House position={[2, -2, 0]} />
       <Background />
     </group>
   );
