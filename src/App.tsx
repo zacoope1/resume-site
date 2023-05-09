@@ -7,6 +7,8 @@ import { NavBar } from "./Components/NavBar";
 import { Theme, useThemeContext } from "./ThemeContext";
 import { Loading } from "./Components/Loading";
 import "./index.css";
+import { StarWarsCrawl } from "./Components/3D/StarWarsCrawl";
+import { Resume } from "./Components/Resume";
 
 const App = (): JSX.Element => {
   const { themeIsLoading } = useThemeContext();
@@ -27,6 +29,8 @@ const App = (): JSX.Element => {
           <NavBar />
           <Routes>
             <Route path="/" Component={Home} />
+            <Route path="/story" Component={StarWarsCrawl} />
+            <Route path="/resume" Component={Resume} />
             <Route path="*" Component={NotFound} />
           </Routes>
         </PageContainer>
@@ -46,6 +50,7 @@ const StyledPageContainer = styled("div")(({ theme }: { theme: Theme }) => ({
   backgroundColor: "transparent",
   "h1,h2,h3,h4,h5,h6,p,a": {
     color: `${theme.color}`,
+    fontFamily: `${theme.fontFamily}`,
   },
 }));
 

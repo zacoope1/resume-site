@@ -1,20 +1,25 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"); font-family: 'Poiret One', cursive; */
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"); /* font-family: "Poiret One", cursive; */
 @import url("https://fonts.cdnfonts.com/css/runescape-uf"); /* font-family: 'RuneScape UF', sans-serif; */
 @import url("https://fonts.cdnfonts.com/css/galactic-basic"); /* font-family: 'Galactic Basic', sans-serif; */
 @import url("https://fonts.cdnfonts.com/css/sf-distant-galaxy"); /* font-family: 'SF Distant Galaxy', sans-serif; */
 
 :root {
-  --main-bg-color: #203354;
-  --main-neon-color: #f09;
-  --secondary-neon-color: #fff;
+  --distant-galaxy-font-family: "SF Distant Galaxy", sans-serif;
+  --galactic-basic-font-family: "Galactic Basic", sans-serif;
+  --runescape-font-family: "RuneScape UF", sans-serif;
+  --poiret-one-font-family: "Poiret One", cursive;
+  --default-font-family: "Poiret One", "Roboto", sans-serif;
+  --secondary-font-family: var(--distant-galaxy-font-family);
+  --font-family: var(--default-font-family);
+  --bg-color: #050810;
+  --neon-color: #f09;
+  --neon-text-shadow: #fff;
 }
 
 body {
   margin: 0;
-  background-color: var(--main-bg-color);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  background-color: var(--bg-color);
+  font-family: var(--default-font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,6 +32,7 @@ h5,
 h6,
 p,
 a {
+  font-family: var(--font-family);
   transition: color 1s ease-in-out;
 }
 
@@ -61,16 +67,18 @@ a {
 
 @keyframes neon-flicker {
   100% {
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff,
-      0 0 40px var(--main-neon-color), 0 0 80px var(--main-neon-color),
-      0 0 90px var(--main-neon-color), 0 0 100px var(--main-neon-color),
-      0 0 150px var(--main-neon-color);
+    text-shadow: 0 0 4px var(--neon-text-shadow),
+      0 0 11px var(--neon-text-shadow), 0 0 19px var(--neon-text-shadow),
+      0 0 40px var(--neon-color), 0 0 80px var(--neon-color),
+      0 0 90px var(--neon-color), 0 0 100px var(--neon-color),
+      0 0 150px var(--neon-color);
   }
   0% {
-    text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 18px #fff,
-      0 0 38px var(--main-neon-color), 0 0 73px var(--main-neon-color),
-      0 0 80px var(--main-neon-color), 0 0 94px var(--main-neon-color),
-      0 0 140px var(--main-neon-color);
+    text-shadow: 0 0 4px var(--neon-text-shadow),
+      0 0 10px var(--neon-text-shadow), 0 0 18px var(--neon-text-shadow),
+      0 0 38px var(--neon-color), 0 0 73px var(--neon-color),
+      0 0 80px var(--neon-color), 0 0 94px var(--neon-color),
+      0 0 140px var(--neon-color);
   }
 }
 
@@ -78,16 +86,18 @@ a {
   0% {
     opacity: 100%;
     visibility: visible;
-    text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 18px #fff,
-      0 0 38px var(--main-neon-color), 0 0 73px var(--main-neon-color),
-      0 0 80px var(--main-neon-color), 0 0 94px var(--main-neon-color),
-      0 0 140px var(--main-neon-color);
+    text-shadow: 0 0 4px var(--neon-text-shadow),
+      0 0 10px var(--neon-text-shadow), 0 0 18px var(--neon-text-shadow),
+      0 0 38px var(--neon-color), 0 0 73px var(--neon-color),
+      0 0 80px var(--neon-color), 0 0 94px var(--neon-color),
+      0 0 140px var(--neon-color);
   }
   100% {
     opacity: 0%;
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff,
-      0 0 40px var(--main-neon-color), 0 0 80px var(--main-neon-color),
-      0 0 90px var(--main-neon-color), 0 0 100px var(--main-neon-color),
-      0 0 150px var(--main-neon-color);
+    text-shadow: 0 0 4px var(--neon-text-shadow),
+      0 0 11px var(--neon-text-shadow), 0 0 19px var(--neon-text-shadow),
+      0 0 40px var(--neon-color), 0 0 80px var(--neon-color),
+      0 0 90px var(--neon-color), 0 0 100px var(--neon-color),
+      0 0 150px var(--neon-color);
   }
 }

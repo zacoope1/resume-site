@@ -1,6 +1,6 @@
 import Switch from "@mui/material/Switch";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Theme, useThemeContext } from "../ThemeContext";
 
@@ -15,16 +15,22 @@ export const NavBar = (): JSX.Element => {
 
   return (
     <NavBarWrapper>
-      <NamePlateText theme={theme} className="Name_Plate">
-        _Zachary Cooper
-      </NamePlateText>
+      <NamePlate>_Zachary Cooper</NamePlate>
       <StyledNavBar>
         <StyledLink theme={theme} to={"/"}>
-          About
+          About Me
         </StyledLink>
-        <StyledLink theme={theme} to={"/FAKE"}>
-          404
+        <StyledLink theme={theme} to={"/interactive"}>
+          Interactive About Me
         </StyledLink>
+        <StyledLink theme={theme} to={"/resume"}>
+          Resume
+        </StyledLink>
+        {isSecondaryTheme && (
+          <StyledLink theme={theme} to={"/story"}>
+            Story
+          </StyledLink>
+        )}
       </StyledNavBar>
       <ThemeSwitch
         customtheme={theme}
@@ -82,15 +88,38 @@ export const StyledLink = styled(Link).attrs((props) => ({
   }
 `;
 
-const NamePlateText = styled("h2")(({ theme }: { theme: Theme }) => ({
-  ...theme,
-  fontSize: "2em",
-  backgroundColor: "transparent",
-  "user-select": "none",
-  "h1,h2,h3,h4,h5,h6,p,a": {
-    color: `${theme.color}`,
-  },
-}));
+const NamePlate = ({ children }: any) => {
+  const { theme } = useThemeContext();
+  const nav = useNavigate();
+  const location = useLocation();
+
+  return (
+    <NamePlateText
+      onClick={() => {
+        if (location.pathname !== "/") nav("/");
+      }}
+      isHome={location.pathname === "/"}
+      theme={theme}
+      className="Name_Plate"
+    >
+      {children}
+    </NamePlateText>
+  );
+};
+
+const NamePlateText = styled("h2")(
+  ({ theme, isHome }: { theme: Theme; isHome: boolean }): any => ({
+    ...theme,
+    position: "relative",
+    fontSize: "2em",
+    backgroundColor: "transparent",
+    "user-select": "none",
+    cursor: isHome ? "default" : "pointer",
+    "h1,h2,h3,h4,h5,h6,p,a": {
+      color: `${theme.color}`,
+    },
+  })
+);
 
 const ThemeSwitch = styled(Switch)(
   ({ customtheme: customTheme }: { customtheme: Theme }): any => ({

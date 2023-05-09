@@ -10,7 +10,6 @@ export type Theme = {
   fontFamily: string;
   color: string;
   backgroundColor: string;
-  fontSize: string;
 };
 
 type ThemeContextType = {
@@ -21,20 +20,18 @@ type ThemeContextType = {
 };
 
 const DefaultTheme: Theme = {
-  fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+  fontFamily: "var(--default-font-family)",
   color: "white",
-  backgroundColor: "#203354",
-  fontSize: "1em",
+  backgroundColor: "#050810",
 };
 
 const SecondaryTheme: Theme = {
-  fontFamily: "SF Distant Galaxy",
+  // fontFamily: "SF Distant Galaxy",
   // fontFamily: "Galactic Basic",
   // fontFamily: "RuneScape UF",
+  fontFamily: "var(--secondary-font-family)",
   color: "#ffff00",
-  backgroundColor: "orange",
-  fontSize: "1em",
+  backgroundColor: "#444474",
 };
 
 const ThemeContext = createContext<ThemeContextType>({
@@ -65,8 +62,26 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (secondaryTheme) setTheme(SecondaryTheme);
-    else setTheme(DefaultTheme);
+    if (secondaryTheme) {
+      document.documentElement.style.setProperty(
+        "--bg-color",
+        SecondaryTheme.backgroundColor
+      );
+      document.documentElement.style.setProperty("--neon-color", "#e60f0f");
+      document.documentElement.style.setProperty(
+        "--neon-text-shadow",
+        "#000000"
+      );
+      setTheme(SecondaryTheme);
+    } else {
+      document.documentElement.style.setProperty(
+        "--bg-color",
+        DefaultTheme.backgroundColor
+      );
+      document.documentElement.style.setProperty("--neon-color", "#f09");
+      document.documentElement.style.setProperty("--neon-text-shadow", "#fff");
+      setTheme(DefaultTheme);
+    }
   }, [secondaryTheme]);
 
   return (

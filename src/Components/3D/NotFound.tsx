@@ -6,17 +6,18 @@ import {
   DegreesToRadians,
   GenerateRandomColor,
   RandomNumberInRange,
+  StyledCanvas,
 } from "./Utilities";
 import { useNavigate } from "react-router-dom";
 import * as Three from "three";
 
 export const NotFound = (): JSX.Element => {
   return (
-    <Canvas shadows="variance">
+    <StyledCanvas shadows="variance">
       <color attach="background" args={["#282c34"]} />
       <ambientLight intensity={0.5} />
       <NotFoundAnimation />
-    </Canvas>
+    </StyledCanvas>
   );
 };
 
@@ -42,32 +43,36 @@ export const NotFoundAnimation = (): JSX.Element => {
   }, [state]);
 
   return (
-    <group>
-      <Center position={[0, 3, -6]}>
-        <group ref={textRef}>
-          {Array.from(_404String).map((letter, index) => (
-            <Text
-              key={index}
-              position={[-5 + index * 0.75, 0, 0]}
-              {...{
-                size: 1,
-                height: 0.5,
-                curveSegments: 32,
-              }}
-            >
-              {letter}
-              <meshBasicMaterial
-                attach="material"
-                color={GenerateRandomColor()}
-              />
-            </Text>
-          ))}
-        </group>
-      </Center>
-      <Druid position={[-2, -2, 0]} rotation={[0, DegreesToRadians(25), 0]} />
-      <House position={[2, -2, 0]} />
-      <Background />
-    </group>
+    <>
+      <color attach="background" args={["#282c34"]} />
+      <ambientLight intensity={0.5} />
+      <group>
+        <Center position={[0, 3, -6]}>
+          <group ref={textRef}>
+            {Array.from(_404String).map((letter, index) => (
+              <Text
+                key={index}
+                position={[-5 + index * 0.75, 0, 0]}
+                {...{
+                  size: 1,
+                  height: 0.5,
+                  curveSegments: 32,
+                }}
+              >
+                {letter}
+                <meshBasicMaterial
+                  attach="material"
+                  color={GenerateRandomColor()}
+                />
+              </Text>
+            ))}
+          </group>
+        </Center>
+        <Druid position={[-2, -2, 0]} rotation={[0, DegreesToRadians(25), 0]} />
+        <House position={[2, -2, 0]} />
+        <Background />
+      </group>
+    </>
   );
 };
 

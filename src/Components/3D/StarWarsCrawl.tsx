@@ -1,9 +1,17 @@
 import React from "react";
-import { Center, Text3D } from "@react-three/drei";
-import { DegreesToRadians } from "./Utilities";
+import { Center, Text } from "@react-three/drei";
+import { DegreesToRadians, StyledCanvas } from "./Utilities";
 import { useFrame } from "@react-three/fiber";
 
-export const Homepage3D = (): JSX.Element => {
+export const StarWarsCrawl = (): JSX.Element => {
+  return (
+    <StyledCanvas>
+      <StarWarsCrawlCanvas />;
+    </StyledCanvas>
+  );
+};
+
+export const StarWarsCrawlCanvas = (): JSX.Element => {
   const ref: any = React.useRef();
 
   const [animationFinished, setAnimationFinished] =
@@ -41,12 +49,6 @@ export const Homepage3D = (): JSX.Element => {
   useFrame(() => {
     const currentPos = ref.current.position;
     if (!(currentPos.z < -19)) {
-      // ref.current.position.set(
-      //   currentPos.x,
-      //   currentPos.y + 0.005,
-      //   currentPos.z - 0.005
-      // );
-
       ref.current.position.set(
         currentPos.x,
         currentPos.y + 0.01,
@@ -70,7 +72,6 @@ export const Homepage3D = (): JSX.Element => {
   return (
     <>
       <color attach="background" args={["black"]} />
-      {/* <ambientLight intensity={0.75} /> */}
       <pointLight position={[10, 10, 0]} />
       <group
         ref={ref}
@@ -78,24 +79,24 @@ export const Homepage3D = (): JSX.Element => {
         position={[2, -20, 0]}
       >
         <Center>
-          <Text3D
-            position={[0, 3, 0]}
-            font={"./fonts/SF_Distant_Galaxy_Regular.json"}
+          <Text
+            position={[0, 2, 0]}
+            font={"https://fonts.cdnfonts.com/s/29165/SFDistantGalaxy.woff"}
           >
-            Zachary Cooper | Software Engineer
+            Zachary Cooper - Software Engineer
             <meshPhongMaterial attach="material" color={"yellow"} />
-          </Text3D>
+          </Text>
           {words.map((word, index) => {
             return (
-              <Text3D
+              <Text
                 key={"Word-" + index}
                 position={[0, 0 - index, 0]}
                 scale={[0.55, 0.55, 0.55]}
-                font={"./fonts/SF_Distant_Galaxy_Regular.json"}
+                font={"https://fonts.cdnfonts.com/s/29165/SFDistantGalaxy.woff"}
               >
                 {word}
                 <meshPhongMaterial attach="material" color={"yellow"} />
-              </Text3D>
+              </Text>
             );
           })}
         </Center>
