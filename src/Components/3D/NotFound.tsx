@@ -1,4 +1,3 @@
-import { Canvas } from "@react-three/fiber";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF, Center, Text, useAnimations } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
@@ -112,6 +111,7 @@ const Druid = (props: any) => {
       actions["PortalOpen"]?.play().setLoop(Three.LoopOnce, 1);
       setDruidClicked(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [druidClicked, druidClickCount]);
 
   return (
