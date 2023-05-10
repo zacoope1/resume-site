@@ -14,6 +14,7 @@ export const StarWarsCrawl = (): JSX.Element => {
 export const StarWarsCrawlCanvas = (): JSX.Element => {
   const ref: any = React.useRef();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [animationFinished, setAnimationFinished] =
     React.useState<boolean>(false);
 
