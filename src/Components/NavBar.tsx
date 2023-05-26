@@ -1,8 +1,9 @@
 import Switch from "@mui/material/Switch";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Theme, useThemeContext } from "../ThemeContext";
+import { ToolTip } from "./Reusable/ToolTip";
 
 export const NavBar = (): JSX.Element => {
   const {
@@ -20,24 +21,31 @@ export const NavBar = (): JSX.Element => {
         <StyledLink theme={theme} to={"/"}>
           About Me
         </StyledLink>
-        <StyledLink theme={theme} to={"/interactive"}>
-          Interactive About Me
-        </StyledLink>
         <StyledLink theme={theme} to={"/resume"}>
           Resume
         </StyledLink>
-        {isSecondaryTheme && (
+        <ToolTip arrow title="Star Wars Crawl Animation">
           <StyledLink theme={theme} to={"/story"}>
-            Story
+            My Story
           </StyledLink>
-        )}
+        </ToolTip>
+        <ToolTip arrow title="Under Construction">
+          <StyledLink theme={theme} to={"/interactive"}>
+            Interactive About Me
+          </StyledLink>
+        </ToolTip>
       </StyledNavBar>
-      <ThemeSwitch
-        customtheme={theme}
-        size="medium"
-        defaultChecked={secondaryTheme}
-        onChange={() => toggleTheme()}
-      ></ThemeSwitch>
+      <ToolTip arrow title="Secondary Theme Is Currently Under Construction!">
+        <div>
+          <ThemeSwitch
+            customtheme={theme}
+            size="medium"
+            defaultChecked={secondaryTheme}
+            onChange={() => toggleTheme()}
+            disabled
+          ></ThemeSwitch>
+        </div>
+      </ToolTip>
     </NavBarWrapper>
   );
 };

@@ -9,8 +9,9 @@ import {
 } from "./Utilities";
 import { useNavigate } from "react-router-dom";
 import * as Three from "three";
+import { PageProps } from "App";
 
-export const NotFound = (): JSX.Element => {
+export const NotFound = ({ loading, setLoading }: PageProps): JSX.Element => {
   return (
     <StyledCanvas shadows="variance">
       <color attach="background" args={["#282c34"]} />

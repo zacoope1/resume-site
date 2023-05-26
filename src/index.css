@@ -42,9 +42,9 @@ a {
 }
 
 .Name_Plate {
-  border-right: 0.15em solid orange;
+  border-right: 1px solid white;
   white-space: nowrap;
-  animation: blink-caret 0.75s step-end infinite;
+  animation: blink-caret 1s step-end infinite;
 }
 
 .Animation_Neon_Flicker {
@@ -61,7 +61,7 @@ a {
     border-color: transparent;
   }
   50% {
-    border-color: orange;
+    border-color: white;
   }
 }
 

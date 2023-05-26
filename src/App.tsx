@@ -9,6 +9,12 @@ import { Loading } from "./Components/Loading";
 import "./index.css";
 import { StarWarsCrawl } from "./Components/3D/StarWarsCrawl";
 import { Resume } from "./Components/Resume";
+import { Interactive } from "Components/3D/Interactive";
+
+export type PageProps = {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 const App = (): JSX.Element => {
   const { themeIsLoading } = useThemeContext();
@@ -24,14 +30,35 @@ const App = (): JSX.Element => {
   return (
     <>
       {(loading || themeIsLoading) && <Loading />}
+
       <Router>
         <PageContainer>
           <NavBar />
           <Routes>
-            <Route path="/" Component={Home} />
-            <Route path="/story" Component={StarWarsCrawl} />
-            <Route path="/resume" Component={Resume} />
-            <Route path="*" Component={NotFound} />
+            <Route
+              path="/"
+              element={<Home loading={loading} setLoading={setLoading} />}
+            />
+            <Route
+              path="/interactive"
+              element={
+                <Interactive loading={loading} setLoading={setLoading} />
+              }
+            />
+            <Route
+              path="/story"
+              element={
+                <StarWarsCrawl loading={loading} setLoading={setLoading} />
+              }
+            />
+            <Route
+              path="/resume"
+              element={<Resume loading={loading} setLoading={setLoading} />}
+            />
+            <Route
+              path="*"
+              element={<NotFound loading={loading} setLoading={setLoading} />}
+            />
           </Routes>
         </PageContainer>
       </Router>

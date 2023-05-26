@@ -29,7 +29,8 @@ const SecondaryTheme: Theme = {
   // fontFamily: "SF Distant Galaxy",
   // fontFamily: "Galactic Basic",
   // fontFamily: "RuneScape UF",
-  fontFamily: "var(--secondary-font-family)",
+  // fontFamily: "var(--secondary-font-family)",
+  fontFamily: "var(--default-font-family)",
   color: "#ffff00",
   backgroundColor: "#444474",
 };

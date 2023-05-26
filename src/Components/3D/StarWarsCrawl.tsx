@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Center, Text } from "@react-three/drei";
 import { DegreesToRadians, StyledCanvas } from "./Utilities";
 import { useFrame } from "@react-three/fiber";
+import { PageProps } from "App";
 
-export const StarWarsCrawl = (): JSX.Element => {
+export const StarWarsCrawl = ({
+  loading,
+  setLoading,
+}: PageProps): JSX.Element => {
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <StyledCanvas>
       <StarWarsCrawlCanvas />;

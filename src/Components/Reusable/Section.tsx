@@ -1,11 +1,31 @@
 import styled from "styled-components";
 
-export const Section = styled.div`
+export const Section = ({
+  children,
+  title = undefined,
+}: {
+  title?: string;
+  children?: any;
+}) => {
+  return (
+    <StyledSection>
+      {title && <StyledTitle>{title}</StyledTitle>}
+      {children}
+    </StyledSection>
+  );
+};
+
+const StyledTitle = styled.h1`
+  border-bottom: 1px solid white;
+`;
+
+export const StyledSection = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 export const Sections = styled.div`

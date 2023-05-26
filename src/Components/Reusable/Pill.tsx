@@ -18,7 +18,8 @@ type IconType =
   | "Postgres"
   | "MsSql"
   | "Linkedin"
-  | "Github";
+  | "Github"
+  | "Email";
 
 export const Pill = ({
   icon,
@@ -38,7 +39,7 @@ export const Pill = ({
   return (
     <StyledPill clickable={clickable} onClick={handleClick}>
       {icon !== "Text" && <img src={ResolveIcon(icon)} alt="" />}
-      <h2>{icon === "Text" ? text : icon}</h2>
+      <h2>{text ? text : icon}</h2>
     </StyledPill>
   );
 };
@@ -50,12 +51,12 @@ const StyledPill = styled.div(({ clickable }: { clickable: boolean }) => ({
   "justify-content": "space-evenly",
   padding: "0.5em 0",
   "border-radius": "1em",
-  "background-color": "#0000af",
+  "background-color": "#02075d",
   margin: "0 0.5em",
   width: "14em",
   "user-select": "none",
   transition: "width 0.5s ease-in-out",
-
+  textShadow: "0px 0px 5px #000000",
   "&:hover": {
     width: "15em",
     transition: "width 0.5s ease-in-out",
@@ -105,6 +106,8 @@ export const ResolveIcon = (icon: IconType) => {
       return "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg";
     case "Github":
       return "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg";
+    case "Email":
+      return "https://cdn.cdnlogo.com/logos/g/24/gmail-icon.svg";
     default:
       return "";
   }

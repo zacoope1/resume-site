@@ -1,6 +1,14 @@
+import { PageProps } from "App";
+import { useEffect } from "react";
 import styled from "styled-components";
 
-export const Resume = (): JSX.Element => {
+export const Resume = ({ loading, setLoading }: PageProps): JSX.Element => {
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
   return (
     <ContentContainer>
       <StyledEmbed
